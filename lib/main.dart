@@ -86,7 +86,10 @@ class _CounterWidgetState extends State<CounterWidget> {
               child: Text(
                 //to displays current number
                 '$_counter',
-                style: TextStyle(fontSize: 50.0),
+                style: TextStyle(
+                  fontSize: 50.0,
+                  color: status,
+                ),
               ),
             ),
           ),
@@ -97,10 +100,39 @@ class _CounterWidgetState extends State<CounterWidget> {
             onChanged: (double value) {
               setState(() {
                 _counter = value.toInt();
+                setStatus();
               });
             },
             activeColor: Colors.blue,
             inactiveColor: Colors.red,
+          ),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              ElevatedButton(
+                onPressed: () {
+                  incrementCounter();
+                  setStatus();
+                },
+                child: const Text('Ignite'),
+              ),
+              const SizedBox(width: 20),
+              ElevatedButton(
+                onPressed: () {
+                  decrementCounter();
+                  setStatus();
+                },
+                child: const Text('Decrement'),
+              ),
+              const SizedBox(width: 20),
+              ElevatedButton(
+                onPressed: () {
+                  resetCounter();
+                  setStatus();
+                },
+                child: const Text('Reset'),
+              ),
+            ],
           ),
         ],
       ),
