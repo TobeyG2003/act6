@@ -80,6 +80,15 @@ class _CounterWidgetState extends State<CounterWidget> {
       body: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
+          liftoff
+              ? const Text(
+                  'Liftoff!',
+                  style: TextStyle(fontSize: 30, color: Colors.blue),
+                )
+              : const Text(
+                  '',
+                  style: TextStyle(fontSize: 30, color: Colors.black),
+                ),
           Center(
             child: Container(
               color: Colors.blue,
