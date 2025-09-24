@@ -82,7 +82,7 @@ class _CounterWidgetState extends State<CounterWidget> {
         children: [
           liftoff
               ? const Text(
-                  'Liftoff!',
+                  'LIFTOFF!',
                   style: TextStyle(fontSize: 30, color: Colors.blue),
                 )
               : const Text(
