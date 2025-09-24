@@ -35,6 +35,7 @@ class _CounterWidgetState extends State<CounterWidget> {
     setState(() {
       if (_counter < 100) {
       _counter++;
+      setStatus();
       }
     });
   }
@@ -43,6 +44,7 @@ class _CounterWidgetState extends State<CounterWidget> {
     setState(() {
       if (_counter > 0) {
       _counter--;
+      setStatus();
       }
     });
   }
@@ -50,6 +52,7 @@ class _CounterWidgetState extends State<CounterWidget> {
   void resetCounter() {
     setState(() {
       _counter = 0;
+      setStatus();
     });
   }
 
@@ -57,6 +60,24 @@ class _CounterWidgetState extends State<CounterWidget> {
     setState(() {
       if (_counter == 100) {
         liftoff = true;
+        showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return AlertDialog(
+          alignment: Alignment.topCenter,
+          title: Text("LIFTOFF!"),
+          content: Text("The rocket has successfully launched!"),
+          actions: <Widget>[
+            TextButton(
+              child: Text("OK"),
+              onPressed: () {
+                Navigator.of(context).pop();
+              },
+            ),
+          ],
+        );
+      },
+    );
       } else {
         liftoff = false;
       }
@@ -121,7 +142,6 @@ class _CounterWidgetState extends State<CounterWidget> {
               ElevatedButton(
                 onPressed: () {
                   incrementCounter();
-                  setStatus();
                 },
                 child: const Text('Ignite'),
               ),
@@ -129,7 +149,6 @@ class _CounterWidgetState extends State<CounterWidget> {
               ElevatedButton(
                 onPressed: () {
                   decrementCounter();
-                  setStatus();
                 },
                 child: const Text('Decrement'),
               ),
@@ -137,7 +156,6 @@ class _CounterWidgetState extends State<CounterWidget> {
               ElevatedButton(
                 onPressed: () {
                   resetCounter();
-                  setStatus();
                 },
                 child: const Text('Reset'),
               ),
