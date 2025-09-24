@@ -28,6 +28,47 @@ class CounterWidget extends StatefulWidget {
 class _CounterWidgetState extends State<CounterWidget> {
   //set counter value
   int _counter = 0;
+  bool liftoff = false;
+  Color status = Colors.red;
+
+  void incrementCounter() {
+    setState(() {
+      if (_counter < 100) {
+      _counter++;
+      }
+    });
+  }
+
+  void decrementCounter() {
+    setState(() {
+      if (_counter > 0) {
+      _counter--;
+      }
+    });
+  }
+
+  void resetCounter() {
+    setState(() {
+      _counter = 0;
+    });
+  }
+
+  void setStatus() {
+    setState(() {
+      if (_counter == 100) {
+        liftoff = true;
+      } else {
+        liftoff = false;
+      }
+      if (_counter > 50) {
+        status = Colors.green;
+      } else if (_counter >= 1) {
+        status = Colors.orange;
+      } else {
+        status = Colors.red;
+      }
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
